@@ -117,13 +117,14 @@ export function DesktopVideoPlayer({
   return (
     <div
       ref={containerRef}
-      className={`relative aspect-video bg-black rounded-[var(--radius-2xl)] group ${data.isFullscreen && fullscreenType === 'window' ? 'is-web-fullscreen' : ''
+      className={`kvideo-container relative aspect-video bg-black rounded-[var(--radius-2xl)] group ${data.isFullscreen && fullscreenType === 'window' ? 'is-web-fullscreen' : ''
         }`}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => isPlaying && setShowControls(false)}
     >
       {/* Clipping Wrapper for video and overlays - Restores the 'Liquid Glass' rounded look */}
-      <div className="absolute inset-0 rounded-[var(--radius-2xl)] overflow-hidden pointer-events-none">
+      <div className={`absolute inset-0 overflow-hidden pointer-events-none ${data.isFullscreen && fullscreenType === 'window' ? 'rounded-0' : 'rounded-[var(--radius-2xl)]'
+        }`}>
         <div className="absolute inset-0 pointer-events-auto">
           {/* Video Element */}
           <video
